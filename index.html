@@ -1,0 +1,3324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEMINARA — Cari Seminar Tanpa Ribet ✨</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FFF9F0;
+            --ivory: #FFFDF7;
+            --soft-pink: #FFD9E8;
+            --soft-pink-deep: #FFB8D0;
+            --lavender: #E6D7FF;
+            --lavender-deep: #C9B3FF;
+            --baby-blue: #D0EEFF;
+            --baby-blue-deep: #A8DFFF;
+            --soft-green: #D4F5E0;
+            --soft-green-deep: #A8E6C3;
+            --soft-yellow: #FFF3C4;
+            --soft-orange: #FFE0C2;
+            --dark: #2D2A3E;
+            --dark-soft: #4A4560;
+            --white: #FFFFFF;
+            --shadow-sm: 0 2px 8px rgba(45, 42, 62, 0.06);
+            --shadow-md: 0 8px 24px rgba(45, 42, 62, 0.08);
+            --shadow-lg: 0 16px 40px rgba(45, 42, 62, 0.12);
+            --shadow-hover: 0 20px 48px rgba(45, 42, 62, 0.16);
+            --radius-sm: 12px;
+            --radius-md: 18px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-pill: 999px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 0;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--ivory);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--lavender-deep);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--soft-pink-deep);
+        }
+
+        /* ===== UTILITIES ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FF6B9D, #A855F7, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 253, 247, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(230, 215, 255, 0.4);
+            padding: 12px 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-decoration: none;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .nav-logo .logo-icon {
+            font-size: 1.8rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .nav-logo span {
+            background: linear-gradient(135deg, #FF6B9D, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            color: var(--dark-soft);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .nav-menu li a:hover {
+            background: var(--lavender);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu li a.active {
+            background: linear-gradient(135deg, var(--soft-pink), var(--lavender));
+            color: var(--dark);
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.15);
+        }
+
+        .nav-menu li a .nav-emoji {
+            font-size: 1.1rem;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            background: var(--lavender);
+            border: none;
+            transition: var(--transition);
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* Bottom nav for mobile */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 253, 247, 0.96);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 2px solid rgba(230, 215, 255, 0.4);
+            padding: 6px 0;
+            z-index: 1001;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .bottom-nav a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--dark-soft);
+            font-size: 0.6rem;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            min-width: 56px;
+        }
+
+        .bottom-nav a .bn-emoji {
+            font-size: 1.3rem;
+        }
+
+        .bottom-nav a.active {
+            color: var(--dark);
+            background: var(--lavender);
+        }
+
+        /* ===== PAGES ===== */
+        .page {
+            display: none;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 40px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--soft-pink), var(--lavender));
+            padding: 8px 18px;
+            border-radius: var(--radius-pill);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--dark-soft);
+            margin-bottom: 24px;
+            max-width: 480px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius-pill);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B9D, #A855F7);
+            color: white;
+            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 12px 32px rgba(168, 85, 247, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--dark);
+            border: 2px solid var(--lavender);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--lavender-deep);
+            background: var(--lavender);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--dark-soft);
+            border: 2px solid transparent;
+        }
+
+        .btn-ghost:hover {
+            background: var(--lavender);
+        }
+
+        .btn-sm {
+            padding: 10px 20px;
+            font-size: 0.85rem;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Hero Illustration */
+        .hero-illustration {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 320px;
+        }
+
+        .hero-card-stack {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .hero-main-card {
+            background: linear-gradient(135deg, var(--white), var(--ivory));
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--lavender);
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-main-card .student-emoji {
+            font-size: 5rem;
+            display: block;
+            margin-bottom: 12px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-main-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .hero-main-card p {
+            font-size: 0.85rem;
+            color: var(--dark-soft);
+            margin-bottom: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 1.8rem;
+            animation: floatSlow 4s ease-in-out infinite;
+            z-index: 3;
+            filter: drop-shadow(0 4px 8px rgba(45, 42, 62, 0.1));
+        }
+
+        .float-1 { top: -10px; left: -10px; animation-delay: 0s; }
+        .float-2 { top: 20px; right: -15px; animation-delay: 0.8s; }
+        .float-3 { bottom: 40px; left: -20px; animation-delay: 1.6s; }
+        .float-4 { bottom: -10px; right: 20px; animation-delay: 0.4s; }
+        .float-5 { top: 50%; left: -30px; animation-delay: 1.2s; }
+        .float-6 { top: 30%; right: -25px; animation-delay: 2s; }
+
+        /* Hero Stats */
+        .hero-stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            background: var(--white);
+            padding: 14px 22px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid rgba(230, 215, 255, 0.5);
+            transition: var(--transition);
+            min-width: 100px;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--lavender-deep);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FF6B9D, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--dark-soft);
+            font-weight: 600;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 48px 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--dark-soft);
+            font-weight: 500;
+        }
+
+        /* ===== CAROUSEL ===== */
+        .carousel-wrapper {
+            position: relative;
+        }
+
+        .carousel {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 8px 4px 20px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        .carousel::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .carousel::-webkit-scrollbar-thumb {
+            background: var(--lavender-deep);
+            border-radius: 10px;
+        }
+
+        .carousel .seminar-card {
+            min-width: 300px;
+            max-width: 300px;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+
+        /* ===== SEMINAR CARD ===== */
+        .seminar-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid rgba(230, 215, 255, 0.4);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .seminar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--lavender-deep);
+        }
+
+        .seminar-card .card-thumb {
+            position: relative;
+            height: 160px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            transition: var(--transition);
+        }
+
+        .seminar-card:hover .card-thumb {
+            transform: scale(1.05);
+        }
+
+        .card-thumb-inner {
+            transition: transform 0.5s ease;
+        }
+
+        .seminar-card:hover .card-thumb-inner {
+            transform: scale(1.1);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 5px 12px;
+            border-radius: var(--radius-pill);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--dark);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow-sm);
+            z-index: 2;
+        }
+
+        .card-fav {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            z-index: 2;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-fav:hover {
+            transform: scale(1.15);
+            background: var(--soft-pink);
+        }
+
+        .card-fav.active {
+            animation: pop 0.4s ease;
+        }
+
+        .card-body {
+            padding: 16px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.6em;
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+            font-size: 0.75rem;
+            color: var(--dark-soft);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            gap: 8px;
+        }
+
+        .card-price {
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: var(--radius-pill);
+            background: var(--soft-green);
+            color: #1a7a4a;
+        }
+
+        .card-price.paid {
+            background: var(--soft-orange);
+            color: #b45309;
+        }
+
+        .card-btn {
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            background: linear-gradient(135deg, var(--lavender), var(--soft-pink));
+            border: none;
+            font-family: inherit;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .card-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.25);
+        }
+
+        /* Category colors */
+        .cat-pendidikan { background: linear-gradient(135deg, #FFE5F0, #FFD1E3); }
+        .cat-sains { background: linear-gradient(135deg, #E0F2FE, #BAE6FD); }
+        .cat-teknologi { background: linear-gradient(135deg, #EDE9FE, #DDD6FE); }
+        .cat-kesehatan { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); }
+        .cat-bisnis { background: linear-gradient(135deg, #FEF3C7, #FDE68A); }
+        .cat-kreativitas { background: linear-gradient(135deg, #FCE7F3, #FBCFE8); }
+        .cat-organisasi { background: linear-gradient(135deg, #FFEDD5, #FED7AA); }
+        .cat-pengembangan { background: linear-gradient(135deg, #E0E7FF, #C7D2FE); }
+
+        /* ===== SEARCH & FILTER ===== */
+        .search-section {
+            background: linear-gradient(135deg, var(--ivory), var(--cream));
+            border-radius: var(--radius-xl);
+            padding: 32px 28px;
+            border: 2px solid var(--lavender);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 32px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--white);
+            border-radius: var(--radius-pill);
+            padding: 6px 6px 6px 20px;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid transparent;
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--lavender-deep);
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
+        }
+
+        .search-bar .search-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            padding: 12px 0;
+            background: transparent;
+            color: var(--dark);
+            min-width: 0;
+        }
+
+        .search-bar input::placeholder {
+            color: #A8A0B8;
+        }
+
+        .search-bar .search-btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            background: linear-gradient(135deg, #FF6B9D, #A855F7);
+            color: white;
+            border: none;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .search-bar .search-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 16px rgba(168, 85, 247, 0.35);
+        }
+
+        .filter-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--dark-soft);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            background: var(--white);
+            border: 2px solid rgba(230, 215, 255, 0.6);
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--dark-soft);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .chip:hover {
+            border-color: var(--lavender-deep);
+            background: var(--lavender);
+            transform: translateY(-2px);
+        }
+
+        .chip.active {
+            background: linear-gradient(135deg, #FF6B9D, #A855F7);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+        }
+
+        .quick-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .quick-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            background: var(--white);
+            border: 2px dashed var(--lavender-deep);
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--dark-soft);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .quick-chip:hover {
+            border-style: solid;
+            background: var(--soft-yellow);
+            transform: translateY(-2px) rotate(-1deg);
+        }
+
+        .quick-chip.active {
+            border-style: solid;
+            background: var(--soft-yellow);
+            border-color: #F59E0B;
+            color: #92400E;
+        }
+
+        .result-count {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--dark-soft);
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ===== CATALOG GRID ===== */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* ===== CATEGORY GRID ===== */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 16px;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 24px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid rgba(230, 215, 255, 0.4);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+
+        .category-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--lavender-deep);
+        }
+
+        .category-card .cat-emoji {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .category-card:hover .cat-emoji {
+            transform: scale(1.2) rotate(-5deg);
+        }
+
+        .category-card .cat-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .category-card .cat-count {
+            font-size: 0.7rem;
+            color: var(--dark-soft);
+            font-weight: 500;
+        }
+
+        /* ===== QUICK MENU ===== */
+        .quick-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .quick-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(230, 215, 255, 0.4);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark-soft);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quick-menu-item:hover {
+            transform: translateY(-4px) rotate(-1deg);
+            box-shadow: var(--shadow-md);
+            border-color: var(--lavender-deep);
+            background: var(--lavender);
+        }
+
+        .quick-menu-item .qm-emoji {
+            font-size: 1.4rem;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(45, 42, 62, 0.5);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            max-width: 640px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            animation: modalPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid var(--lavender);
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.9) translateY(20px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: sticky;
+            top: 16px;
+            float: right;
+            margin-right: 16px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--lavender);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 10;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .modal-close:hover {
+            background: var(--soft-pink);
+            transform: rotate(90deg);
+        }
+
+        .modal-hero {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            position: relative;
+        }
+
+        .modal-body {
+            padding: 24px 28px 28px;
+        }
+
+        .modal-category {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .modal-desc {
+            font-size: 0.9rem;
+            color: var(--dark-soft);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .modal-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .modal-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--dark-soft);
+            background: var(--ivory);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+        }
+
+        .modal-info-item .info-emoji {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .modal-info-item strong {
+            display: block;
+            color: var(--dark);
+            font-size: 0.75rem;
+            margin-bottom: 2px;
+        }
+
+        .modal-benefits {
+            margin-bottom: 20px;
+        }
+
+        .modal-benefits h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .modal-benefits ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .modal-benefits li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--dark-soft);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== TOAST ===== */
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: var(--white);
+            padding: 14px 22px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            animation: slideInRight 0.35s ease;
+            border-left: 4px solid var(--soft-green-deep);
+            max-width: 320px;
+        }
+
+        .toast.error {
+            border-left-color: #F87171;
+        }
+
+        .toast.info {
+            border-left-color: var(--lavender-deep);
+        }
+
+        .toast.removing {
+            animation: slideOutRight 0.3s ease forwards;
+        }
+
+        /* ===== FORM ===== */
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--lavender);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--dark-soft);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 2px solid rgba(230, 215, 255, 0.6);
+            font-family: inherit;
+            font-size: 0.88rem;
+            color: var(--dark);
+            background: var(--ivory);
+            transition: var(--transition);
+            outline: none;
+            width: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--lavender-deep);
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.08);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234A4560' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+        }
+
+        .form-group .error-msg {
+            font-size: 0.7rem;
+            color: #EF4444;
+            font-weight: 600;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error select {
+            border-color: #F87171;
+        }
+
+        .form-group.error .error-msg {
+            display: block;
+        }
+
+        /* ===== PRICING ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid rgba(230, 215, 255, 0.4);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--lavender-deep);
+        }
+
+        .pricing-card.recommended {
+            border-color: #FF6B9D;
+            box-shadow: 0 8px 32px rgba(255, 107, 157, 0.15);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #FF6B9D, #A855F7);
+            color: white;
+            padding: 6px 18px;
+            border-radius: var(--radius-pill);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
+            white-space: nowrap;
+        }
+
+        .pricing-name {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FF6B9D, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--dark-soft);
+        }
+
+        /* ===== PROFILE ===== */
+        .profile-header {
+            background: linear-gradient(135deg, var(--lavender), var(--soft-pink));
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header .profile-avatar {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .profile-header h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .profile-header p {
+            font-size: 0.85rem;
+            color: var(--dark-soft);
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .profile-stat {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-stat .ps-number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .profile-stat .ps-label {
+            font-size: 0.75rem;
+            color: var(--dark-soft);
+            font-weight: 600;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(230, 215, 255, 0.4);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: var(--lavender-deep);
+        }
+
+        .faq-question {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--dark);
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: var(--ivory);
+        }
+
+        .faq-question .faq-arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-question .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            padding: 0 20px;
+            font-size: 0.85rem;
+            color: var(--dark-soft);
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 20px 18px;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .contact-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--dark);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid rgba(230, 215, 255, 0.4);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--lavender-deep);
+        }
+
+        .contact-card .cc-emoji {
+            font-size: 2rem;
+        }
+
+        .contact-card .cc-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--dark-soft);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-card .cc-value {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+            word-break: break-word;
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state .empty-emoji {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 16px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .empty-state h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+            color: var(--dark-soft);
+            margin-bottom: 24px;
+        }
+
+        /* ===== FLOATING WHATSAPP ===== */
+        .float-wa {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+            z-index: 999;
+            transition: var(--transition);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 48px 0 32px;
+            margin-top: 48px;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer h3 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer .footer-tagline {
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer h4 {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .footer ul li a:hover {
+            color: white;
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .nav-menu li a {
+                padding: 6px 10px;
+                font-size: 0.78rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-illustration {
+                min-height: 260px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 253, 247, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 16px;
+                gap: 4px;
+                border-bottom: 2px solid var(--lavender);
+                box-shadow: var(--shadow-lg);
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+
+            .nav-menu.open {
+                display: flex;
+            }
+
+            .nav-menu li a {
+                width: 100%;
+                padding: 12px 16px;
+                font-size: 0.9rem;
+                border-radius: var(--radius-md);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .bottom-nav {
+                display: flex;
+            }
+
+            body {
+                padding-bottom: 70px;
+            }
+
+            .float-wa {
+                bottom: 80px;
+                right: 16px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+
+            .toast-container {
+                top: 70px;
+                right: 12px;
+                left: 12px;
+            }
+
+            .toast {
+                max-width: 100%;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .modal {
+                max-height: 85vh;
+                border-radius: var(--radius-lg);
+            }
+
+            .modal-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .catalog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-menu-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .profile-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .carousel .seminar-card {
+                min-width: 260px;
+                max-width: 260px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .search-section {
+                padding: 24px 18px;
+            }
+
+            .form-card {
+                padding: 24px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats {
+                gap: 12px;
+            }
+
+            .stat-item {
+                padding: 10px 16px;
+                min-width: 80px;
+            }
+
+            .stat-number {
+                font-size: 1.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .quick-menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-actions {
+                flex-direction: column;
+            }
+
+            .modal-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ===== SECTION DIVIDER ===== */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .section-divider .divider-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--lavender), transparent);
+            border-radius: 2px;
+        }
+
+        /* ===== REQUEST STATUS ===== */
+        .request-status {
+            background: var(--soft-green);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 16px;
+            animation: fadeInUp 0.4s ease;
+            border: 2px solid var(--soft-green-deep);
+        }
+
+        .request-status .rs-emoji {
+            font-size: 2rem;
+        }
+
+        .request-status .rs-text h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1a7a4a;
+        }
+
+        .request-status .rs-text p {
+            font-size: 0.8rem;
+            color: #2d6a4f;
+        }
+
+        /* ===== SPARKLE DECOR ===== */
+        .sparkle-decor {
+            position: absolute;
+            font-size: 1rem;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* ===== TAG ===== */
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: var(--radius-pill);
+            font-size: 0.68rem;
+            font-weight: 700;
+            background: var(--lavender);
+            color: var(--dark-soft);
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a class="nav-logo" onclick="navigateTo('beranda')">
+                <span class="logo-icon">🎓</span>
+                <span>SEMINARA</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a data-page="beranda" class="active" onclick="navigateTo('beranda')"><span class="nav-emoji">🏠</span>Beranda</a></li>
+                <li><a data-page="cari" onclick="navigateTo('cari')"><span class="nav-emoji">🔎</span>Cari Seminar</a></li>
+                <li><a data-page="kategori" onclick="navigateTo('kategori')"><span class="nav-emoji">📚</span>Kategori</a></li>
+                <li><a data-page="carikan" onclick="navigateTo('carikan')"><span class="nav-emoji">💌</span>Carikan</a></li>
+                <li><a data-page="favorit" onclick="navigateTo('favorit')"><span class="nav-emoji">💗</span>Favorit</a></li>
+                <li><a data-page="paket" onclick="navigateTo('paket')"><span class="nav-emoji">🎟️</span>Paket</a></li>
+                <li><a data-page="profil" onclick="navigateTo('profil')"><span class="nav-emoji">👤</span>Profil</a></li>
+                <li><a data-page="bantuan" onclick="navigateTo('bantuan')"><span class="nav-emoji">💬</span>Bantuan</a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== BOTTOM NAV (Mobile) ===== -->
+    <div class="bottom-nav" id="bottomNav">
+        <a data-page="beranda" class="active" onclick="navigateTo('beranda')">
+            <span class="bn-emoji">🏠</span>Beranda
+        </a>
+        <a data-page="cari" onclick="navigateTo('cari')">
+            <span class="bn-emoji">🔎</span>Cari
+        </a>
+        <a data-page="favorit" onclick="navigateTo('favorit')">
+            <span class="bn-emoji">💗</span>Favorit
+        </a>
+        <a data-page="paket" onclick="navigateTo('paket')">
+            <span class="bn-emoji">🎟️</span>Paket</a>
+        <a data-page="profil" onclick="navigateTo('profil')">
+            <span class="bn-emoji">👤</span>Profil
+        </a>
+    </div>
+
+    <!-- ===== PAGE: BERANDA ===== -->
+    <div class="page active" id="page-beranda">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-badge">✨ TEMAN SEMINAR MAHASISWA</div>
+                        <h1>Cari Seminar <span class="text-gradient">Tanpa Ribet</span> ✨</h1>
+                        <p>Temukan seminar yang sesuai jurusan, kebutuhan, budget, dan jadwalmu dalam satu tempat.</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" onclick="navigateTo('cari')">🔎 Cari Seminar</button>
+                            <button class="btn btn-secondary" onclick="navigateTo('carikan')">💌 Carikan untuk Saya</button>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">100+</span>
+                                <span class="stat-label">Seminar</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">Kategori</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Student Friendly</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-illustration">
+                        <div class="hero-card-stack">
+                            <div class="hero-main-card">
+                                <span class="student-emoji">👩‍💻</span>
+                                <h3>Hai, Mahasiswa! 👋</h3>
+                                <p>Siap cari seminar hari ini?</p>
+                            </div>
+                            <span class="floating-element float-1">📅</span>
+                            <span class="floating-element float-2">📜</span>
+                            <span class="floating-element float-3">🎟️</span>
+                            <span class="floating-element float-4">📚</span>
+                            <span class="floating-element float-5">✨</span>
+                            <span class="floating-element float-6">💌</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seminar Pilihan -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">✨ Seminar Pilihan Buat Kamu</h2>
+                        <p class="section-subtitle">Rekomendasi seminar terbaik minggu ini</p>
+                    </div>
+                    <button class="btn btn-ghost btn-sm" onclick="navigateTo('cari')">Lihat Semua →</button>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="carousel" id="carouselSeminar"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Menu -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">✨ Kamu Lagi Butuh Apa?</h2>
+                        <p class="section-subtitle">Pilih sesuai kebutuhanmu, langsung difilter!</p>
+                    </div>
+                </div>
+                <div class="quick-menu-grid">
+                    <div class="quick-menu-item" onclick="quickFilter('tugas')">
+                        <span class="qm-emoji">📚</span> Buat Tugas Kuliah
+                    </div>
+                    <div class="quick-menu-item" onclick="quickFilter('sertifikat')">
+                        <span class="qm-emoji">📜</span> Butuh Sertifikat
+                    </div>
+                    <div class="quick-menu-item" onclick="quickFilter('gratis')">
+                        <span class="qm-emoji">💸</span> Yang Gratis Aja
+                    </div>
+                    <div class="quick-menu-item" onclick="quickFilter('karier')">
+                        <span class="qm-emoji">💼</span> Persiapan Karier
+                    </div>
+                    <div class="quick-menu-item" onclick="quickFilter('publicspeaking')">
+                        <span class="qm-emoji">🎤</span> Public Speaking
+                    </div>
+                    <div class="quick-menu-item" onclick="quickFilter('digital')">
+                        <span class="qm-emoji">💻</span> Skill Digital
+                    </div>
+                    <div class="quick-menu-item" onclick="quickFilter('selfdev')">
+                        <span class="qm-emoji">🌱</span> Self Development
+                    </div>
+                    <div class="quick-menu-item" onclick="quickFilter('terbaru')">
+                        <span class="qm-emoji">🔥</span> Seminar Terbaru
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kategori Preview -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">📚 Cari Berdasarkan Kategori</h2>
+                        <p class="section-subtitle">Pilih kategori yang kamu minati</p>
+                    </div>
+                </div>
+                <div class="category-grid" id="categoryGridHome"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: CARI SEMINAR ===== -->
+    <div class="page" id="page-cari">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">🔎 Mau Cari Seminar Apa?</h2>
+                        <p class="section-subtitle">Temukan seminar yang tepat untukmu</p>
+                    </div>
+                </div>
+
+                <div class="search-section">
+                    <div class="search-bar">
+                        <span class="search-icon">🔎</span>
+                        <input type="text" id="searchInput" placeholder="Cari seminar, topik, skill, atau jurusan..." oninput="handleSearch()">
+                        <button class="search-btn" onclick="handleSearch()">Cari</button>
+                    </div>
+
+                    <div class="filter-label">📚 Kategori</div>
+                    <div class="filter-chips" id="categoryChips">
+                        <button class="chip active" data-category="all" onclick="setCategory('all')">Semua</button>
+                        <button class="chip" data-category="Pendidikan" onclick="setCategory('Pendidikan')">🎓 Pendidikan</button>
+                        <button class="chip" data-category="IPA & Sains" onclick="setCategory('IPA & Sains')">🔬 IPA & Sains</button>
+                        <button class="chip" data-category="Teknologi" onclick="setCategory('Teknologi')">💻 Teknologi</button>
+                        <button class="chip" data-category="Kesehatan" onclick="setCategory('Kesehatan')">🩺 Kesehatan</button>
+                        <button class="chip" data-category="Bisnis" onclick="setCategory('Bisnis')">💼 Bisnis</button>
+                        <button class="chip" data-category="Kreativitas" onclick="setCategory('Kreativitas')">🎨 Kreativitas</button>
+                        <button class="chip" data-category="Organisasi" onclick="setCategory('Organisasi')">🤝 Organisasi</button>
+                        <button class="chip" data-category="Pengembangan Diri" onclick="setCategory('Pengembangan Diri')">🌱 Pengembangan Diri</button>
+                    </div>
+
+                    <div class="filter-label" style="margin-top:8px;">✨ Filter Cepat</div>
+                    <div class="quick-chips" id="quickChips">
+                        <button class="quick-chip" data-filter="gratis" onclick="toggleQuickFilter('gratis')">✨ Gratis</button>
+                        <button class="quick-chip" data-filter="sertifikat" onclick="toggleQuickFilter('sertifikat')">📜 Bersertifikat</button>
+                        <button class="quick-chip" data-filter="online" onclick="toggleQuickFilter('online')">💻 Online</button>
+                        <button class="quick-chip" data-filter="offline" onclick="toggleQuickFilter('offline')">📍 Offline</button>
+                        <button class="quick-chip" data-filter="terbaru" onclick="toggleQuickFilter('terbaru')">🔥 Terbaru</button>
+                    </div>
+                </div>
+
+                <div class="result-count" id="resultCount"></div>
+                <div class="catalog-grid" id="catalogGrid"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: KATEGORI ===== -->
+    <div class="page" id="page-kategori">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">📚 Cari Berdasarkan Kategori</h2>
+                        <p class="section-subtitle">Pilih kategori untuk melihat seminar</p>
+                    </div>
+                </div>
+                <div class="category-grid" id="categoryGridFull"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: CARIKAN ===== -->
+    <div class="page" id="page-carikan">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">😭 Mager Cari Seminar Sendiri?</h2>
+                        <p class="section-subtitle">Biar SEMINARA yang carikan!</p>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <form id="requestForm" onsubmit="submitRequest(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>👤 Nama</label>
+                                <input type="text" id="reqNama" placeholder="Nama lengkap kamu" required>
+                                <span class="error-msg">Nama wajib diisi</span>
+                            </div>
+                            <div class="form-group">
+                                <label>📱 WhatsApp</label>
+                                <input type="tel" id="reqWA" placeholder="08xxxxxxxxxx" required>
+                                <span class="error-msg">Nomor WhatsApp wajib diisi</span>
+                            </div>
+                            <div class="form-group">
+                                <label>🎓 Jurusan</label>
+                                <input type="text" id="reqJurusan" placeholder="Contoh: Pendidikan Matematika" required>
+                                <span class="error-msg">Jurusan wajib diisi</span>
+                            </div>
+                            <div class="form-group">
+                                <label>🔎 Topik yang Dicari</label>
+                                <input type="text" id="reqTopik" placeholder="Contoh: AI, Public Speaking, dll" required>
+                                <span class="error-msg">Topik wajib diisi</span>
+                            </div>
+                            <div class="form-group">
+                                <label>📚 Kategori</label>
+                                <select id="reqKategori" required>
+                                    <option value="">Pilih kategori</option>
+                                    <option value="Pendidikan">🎓 Pendidikan</option>
+                                    <option value="IPA & Sains">🔬 IPA & Sains</option>
+                                    <option value="Teknologi">💻 Teknologi</option>
+                                    <option value="Kesehatan">🩺 Kesehatan</option>
+                                    <option value="Bisnis">💼 Bisnis</option>
+                                    <option value="Kreativitas">🎨 Kreativitas</option>
+                                    <option value="Organisasi">🤝 Organisasi</option>
+                                    <option value="Pengembangan Diri">🌱 Pengembangan Diri</option>
+                                </select>
+                                <span class="error-msg">Pilih kategori</span>
+                            </div>
+                            <div class="form-group">
+                                <label>💰 Budget Maksimal</label>
+                                <input type="text" id="reqBudget" placeholder="Contoh: Rp0 - Rp50.000" required>
+                                <span class="error-msg">Budget wajib diisi</span>
+                            </div>
+                            <div class="form-group">
+                                <label>📅 Tanggal yang Diinginkan</label>
+                                <input type="date" id="reqTanggal" required>
+                                <span class="error-msg">Tanggal wajib diisi</span>
+                            </div>
+                            <div class="form-group">
+                                <label>💻 Format</label>
+                                <select id="reqFormat" required>
+                                    <option value="">Pilih format</option>
+                                    <option value="Online">💻 Online</option>
+                                    <option value="Offline">📍 Offline</option>
+                                    <option value="Hybrid">🔄 Hybrid</option>
+                                </select>
+                                <span class="error-msg">Pilih format</span>
+                            </div>
+                            <div class="form-group">
+                                <label>📜 Butuh Sertifikat?</label>
+                                <select id="reqSertifikat" required>
+                                    <option value="">Pilih</option>
+                                    <option value="Ya">Ya, butuh sertifikat</option>
+                                    <option value="Tidak">Tidak wajib</option>
+                                </select>
+                                <span class="error-msg">Pilih salah satu</span>
+                            </div>
+                            <div class="form-group">
+                                <label>🎟️ Pilih Paket</label>
+                                <select id="reqPaket" required>
+                                    <option value="">Pilih paket</option>
+                                    <option value="Free Search">Free Search - Rp0</option>
+                                    <option value="SEMINARA HELPER">SEMINARA HELPER - Rp5.000</option>
+                                    <option value="SEMINARA PLUS">SEMINARA PLUS - Rp10.000</option>
+                                </select>
+                                <span class="error-msg">Pilih paket</span>
+                            </div>
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn btn-primary btn-block" style="margin-top:8px;">💌 Kirim Request</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="requestStatus" class="request-status hidden">
+                        <span class="rs-emoji">✅</span>
+                        <div class="rs-text">
+                            <h4>Request kamu berhasil dikirim! 💗</h4>
+                            <p>Kami akan segera memprosesnya. Klik tombol di bawah untuk lanjut ke WhatsApp.</p>
+                        </div>
+                    </div>
+                    <div id="waButtonContainer" style="margin-top:16px; display:none;">
+                        <a href="#" id="waLink" target="_blank" class="btn btn-primary btn-block" style="background: linear-gradient(135deg, #25D366, #128C7E);">
+                            💬 Lanjut ke WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: FAVORIT ===== -->
+    <div class="page" id="page-favorit">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">💗 Seminar Favorit</h2>
+                        <p class="section-subtitle">Seminar yang sudah kamu simpan</p>
+                    </div>
+                </div>
+                <div id="favoritContent"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: PAKET ===== -->
+    <div class="page" id="page-paket">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">🎟️ Pilih Paketmu</h2>
+                        <p class="section-subtitle">Sesuaikan dengan kebutuhanmu</p>
+                    </div>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3 class="pricing-name">FREE SEARCH</h3>
+                        <div class="pricing-price">Rp0</div>
+                        <ul class="pricing-features">
+                            <li>🔎 Cari sendiri</li>
+                            <li>📚 Akses katalog</li>
+                            <li>🔎 Search</li>
+                            <li>✨ Filter</li>
+                            <li>💗 Favorit</li>
+                        </ul>
+                        <button class="btn btn-secondary btn-block" onclick="selectPackage('Free Search')">Mulai Cari</button>
+                    </div>
+                    <div class="pricing-card recommended">
+                        <div class="pricing-badge">✨ RECOMMENDED</div>
+                        <h3 class="pricing-name">SEMINARA PLUS</h3>
+                        <div class="pricing-price">Rp10.000</div>
+                        <ul class="pricing-features">
+                            <li>💌 Maksimal 5 rekomendasi</li>
+                            <li>🎓 Sesuai jurusan</li>
+                            <li>📜 Fokus sertifikat</li>
+                            <li>🔥 Priority request</li>
+                        </ul>
+                        <button class="btn btn-primary btn-block" onclick="selectPackage('SEMINARA PLUS')">Pilih Paket</button>
+                    </div>
+                    <div class="pricing-card">
+                        <h3 class="pricing-name">SEMINARA HELPER</h3>
+                        <div class="pricing-price">Rp5.000</div>
+                        <ul class="pricing-features">
+                            <li>💌 Dicarikan seminar</li>
+                            <li>📚 Sesuai kebutuhan</li>
+                            <li>🎯 Maksimal 3 rekomendasi</li>
+                            <li>💰 Sesuai budget</li>
+                            <li>📅 Sesuai jadwal</li>
+                        </ul>
+                        <button class="btn btn-secondary btn-block" onclick="selectPackage('SEMINARA HELPER')">Pilih Paket</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: PROFIL ===== -->
+    <div class="page" id="page-profil">
+        <section class="section">
+            <div class="container">
+                <div class="profile-header">
+                    <span class="profile-avatar">👋</span>
+                    <h2>Halo, Mahasiswa!</h2>
+                    <p>Selamat datang di dashboard SEMINARA</p>
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <div class="ps-number" id="profileFavCount">0</div>
+                            <div class="ps-label">💗 Favorit</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="ps-number" id="profileRequestCount">0</div>
+                            <div class="ps-label">📨 Request</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="ps-number" id="profileFavCategory">-</div>
+                            <div class="ps-label">🎓 Kategori Favorit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== PAGE: BANTUAN ===== -->
+    <div class="page" id="page-bantuan">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">💬 Bantuan</h2>
+                        <p class="section-subtitle">Pertanyaan yang sering ditanyakan</p>
+                    </div>
+                </div>
+                <div class="faq-list" id="faqList"></div>
+                <div style="margin-top:24px; text-align:center;">
+                    <a href="https://wa.me/6282337237718" target="_blank" class="btn btn-primary">
+                        💬 Chat WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">💌 Hubungi SEMINARA</h2>
+                    </div>
+                </div>
+                <div class="contact-grid">
+                    <a href="https://wa.me/6282337237718" target="_blank" class="contact-card">
+                        <span class="cc-emoji">📱</span>
+                        <span class="cc-label">WhatsApp</span>
+                        <span class="cc-value">082337237718</span>
+                    </a>
+                    <a href="https://www.instagram.com/fina.rhmtkaa_/" target="_blank" class="contact-card">
+                        <span class="cc-emoji">📸</span>
+                        <span class="cc-label">Instagram</span>
+                        <span class="cc-value">@fina.rhmtkaa_</span>
+                    </a>
+                    <a href="mailto:finarahmatika60@gmail.com" class="contact-card">
+                        <span class="cc-emoji">✉️</span>
+                        <span class="cc-label">Email</span>
+                        <span class="cc-value">finarahmatika60@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+        <div class="modal" id="modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-hero" id="modalHero"></div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ===== FLOATING WHATSAPP ===== -->
+    <a href="https://wa.me/6282337237718" target="_blank" class="float-wa" aria-label="WhatsApp">
+        💬
+    </a>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>🎓 SEMINARA</h3>
+                    <p class="footer-tagline">"Cari Seminar Tanpa Ribet ✨"</p>
+                    <p style="font-size:0.8rem; color:rgba(255,255,255,0.5);">Student Service Platform</p>
+                </div>
+                <div>
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a onclick="navigateTo('beranda')">🏠 Beranda</a></li>
+                        <li><a onclick="navigateTo('cari')">🔎 Cari Seminar</a></li>
+                        <li><a onclick="navigateTo('kategori')">📚 Kategori</a></li>
+                        <li><a onclick="navigateTo('carikan')">💌 Carikan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Lainnya</h4>
+                    <ul>
+                        <li><a onclick="navigateTo('paket')">🎟️ Paket</a></li>
+                        <li><a onclick="navigateTo('favorit')">💗 Favorit</a></li>
+                        <li><a onclick="navigateTo('profil')">👤 Profil</a></li>
+                        <li><a onclick="navigateTo('bantuan')">💬 Bantuan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="https://wa.me/6282337237718" target="_blank">📱 WhatsApp</a></li>
+                        <li><a href="https://www.instagram.com/fina.rhmtkaa_/" target="_blank">📸 Instagram</a></li>
+                        <li><a href="mailto:finarahmatika60@gmail.com">✉️ Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 SEMINARA — Student Service Platform
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== DATA SEMINAR =====
+        const seminars = [
+            {
+                id: 1,
+                title: "Seminar Nasional Pendidikan di Era Digital",
+                category: "Pendidikan",
+                date: "2026-09-20",
+                time: "08:00 - 12:00 WIB",
+                format: "Online",
+                location: "Zoom Meeting",
+                price: "Gratis",
+                certificate: true,
+                organizer: "Universitas Negeri Malang",
+                speaker: "Prof. Dr. Ani Rahmawati, M.Pd.",
+                description: "Seminar ini membahas transformasi pendidikan di era digital, termasuk pemanfaatan teknologi AI dalam pembelajaran, literasi digital, dan tantangan guru masa depan.",
+                benefit: ["Ilmu baru tentang pendidikan digital", "E-Sertifikat resmi", "Networking dengan pendidik"],
+                thumbnail: "📚",
+                tags: ["pendidikan", "digital", "AI", "guru"],
+                isNew: false
+            },
+            {
+                id: 2,
+                title: "Webinar Literasi Sains untuk Generasi Muda",
+                category: "IPA & Sains",
+                date: "2026-09-22",
+                time: "13:00 - 15:30 WIB",
+                format: "Online",
+                location: "Google Meet",
+                price: "Gratis",
+                certificate: true,
+                organizer: "Himpunan Mahasiswa Sains",
+                speaker: "Dr. Budi Santoso, M.Si.",
+                description: "Webinar yang membahas pentingnya literasi sains bagi generasi muda, bagaimana cara berpikir kritis, dan menerapkan metode ilmiah dalam kehidupan sehari-hari.",
+                benefit: ["Pemahaman literasi sains", "E-Sertifikat", "Diskusi interaktif"],
+                thumbnail: "🔬",
+                tags: ["sains", "literasi", "generasi muda"],
+                isNew: false
+            },
+            {
+                id: 3,
+                title: "Basic Research Skills for Students",
+                category: "Pendidikan",
+                date: "2026-09-25",
+                time: "09:00 - 11:30 WIB",
+                format: "Online",
+                location: "Zoom Meeting",
+                price: "Rp15.000",
+                certificate: true,
+                organizer: "Student Research Club",
+                speaker: "Dr. Siti Nurhaliza, M.Pd.",
+                description: "Pelatihan dasar penelitian untuk mahasiswa: cara mencari referensi, menyusun proposal, dan menulis laporan penelitian yang baik dan benar.",
+                benefit: ["Skill penelitian", "Template proposal", "E-Sertifikat"],
+                thumbnail: "📝",
+                tags: ["penelitian", "research", "mahasiswa"],
+                isNew: true
+            },
+            {
+                id: 4,
+                title: "Public Speaking untuk Mahasiswa",
+                category: "Pengembangan Diri",
+                date: "2026-09-28",
+                time: "10:00 - 12:00 WIB",
+                format: "Offline",
+                location: "Aula Gedung B, Universitas Negeri",
+                price: "Rp25.000",
+                certificate: true,
+                organizer: "Komunitas Public Speaking",
+                speaker: "Rina Wijaya, S.Pd., M.Pd.",
+                description: "Workshop intensif public speaking untuk mahasiswa: mengatasi demam panggung, teknik berbicara persuasif, dan latihan langsung.",
+                benefit: ["Praktik langsung", "Feedback dari ahli", "E-Sertifikat"],
+                thumbnail: "🎤",
+                tags: ["public speaking", "komunikasi", "mahasiswa"],
+                isNew: true
+            },
+            {
+                id: 5,
+                title: "AI dan Masa Depan Pendidikan",
+                category: "Teknologi",
+                date: "2026-10-01",
+                time: "13:00 - 16:00 WIB",
+                format: "Online",
+                location: "Zoom Meeting",
+                price: "Gratis",
+                certificate: true,
+                organizer: "Tech Education Indonesia",
+                speaker: "Ir. Ahmad Fauzi, M.T.",
+                description: "Diskusi tentang bagaimana AI mengubah lanskap pendidikan, peluang dan tantangan, serta bagaimana mahasiswa bisa mempersiapkan diri.",
+                benefit: ["Wawasan AI", "E-Sertifikat", "Q&A interaktif"],
+                thumbnail: "🤖",
+                tags: ["AI", "teknologi", "pendidikan"],
+                isNew: false
+            },
+            {
+                id: 6,
+                title: "Seminar Kewirausahaan Mahasiswa",
+                category: "Bisnis",
+                date: "2026-10-03",
+                time: "08:30 - 12:00 WIB",
+                format: "Offline",
+                location: "Hall Utama Kampus",
+                price: "Rp30.000",
+                certificate: true,
+                organizer: "Inkubator Bisnis Kampus",
+                speaker: "Dedi Kurniawan, S.E., M.M.",
+                description: "Seminar kewirausahaan untuk mahasiswa: membangun mindset wirausaha, memulai bisnis dari nol, dan strategi pemasaran digital.",
+                benefit: ["Mindset wirausaha", "Networking", "E-Sertifikat"],
+                thumbnail: "💼",
+                tags: ["bisnis", "kewirausahaan", "startup"],
+                isNew: false
+            },
+            {
+                id: 7,
+                title: "Mental Health Awareness for Students",
+                category: "Kesehatan",
+                date: "2026-10-05",
+                time: "15:00 - 17:00 WIB",
+                format: "Online",
+                location: "Google Meet",
+                price: "Gratis",
+                certificate: true,
+                organizer: "Student Wellness Center",
+                speaker: "Dra. Maya Sari, M.Psi.",
+                description: "Webinar tentang kesehatan mental mahasiswa: mengelola stres akademik, anxiety, dan membangun kebiasaan sehat.",
+                benefit: ["Tips kesehatan mental", "E-Sertifikat", "Sesi konseling singkat"],
+                thumbnail: "🧠",
+                tags: ["mental health", "kesehatan", "mahasiswa"],
+                isNew: true
+            },
+            {
+                id: 8,
+                title: "Workshop Pengembangan Media Pembelajaran",
+                category: "Pendidikan",
+                date: "2026-10-08",
+                time: "09:00 - 14:00 WIB",
+                format: "Offline",
+                location: "Lab Komputer Lantai 3",
+                price: "Rp50.000",
+                certificate: true,
+                organizer: "Pusat Pengembangan Media",
+                speaker: "Rizky Pratama, S.Pd., M.Pd.",
+                description: "Workshop hands-on membuat media pembelajaran interaktif menggunakan Canva, Articulate, dan tools lainnya.",
+                benefit: ["Praktik langsung", "Template media", "E-Sertifikat"],
+                thumbnail: "🎨",
+                tags: ["media pembelajaran", "workshop", "pendidikan"],
+                isNew: false
+            },
+            {
+                id: 9,
+                title: "Seminar Nasional Teknologi Pembelajaran",
+                category: "Teknologi",
+                date: "2026-10-10",
+                time: "08:00 - 15:00 WIB",
+                format: "Hybrid",
+                location: "Auditorium Utama + Zoom",
+                price: "Rp75.000",
+                certificate: true,
+                organizer: "Asosiasi Teknologi Pendidikan",
+                speaker: "Prof. Dr. Hendra Gunawan, M.Kom.",
+                description: "Seminar nasional yang membahas perkembangan teknologi pembelajaran terkini, dari LMS hingga AI dalam pendidikan.",
+                benefit: ["Sertifikat nasional", "Prosiding", "Networking luas"],
+                thumbnail: "🖥️",
+                tags: ["teknologi", "pembelajaran", "seminar nasional"],
+                isNew: false
+            },
+            {
+                id: 10,
+                title: "Webinar Personal Branding untuk Mahasiswa",
+                category: "Pengembangan Diri",
+                date: "2026-10-12",
+                time: "19:00 - 21:00 WIB",
+                format: "Online",
+                location: "Zoom Meeting",
+                price: "Gratis",
+                certificate: true,
+                organizer: "Career Development Center",
+                speaker: "Nadia Putri, S.I.Kom., M.M.",
+                description: "Webinar tentang membangun personal branding di era digital: LinkedIn, portofolio online, dan personal value.",
+                benefit: ["Strategi branding", "Optimasi LinkedIn", "E-Sertifikat"],
+                thumbnail: "🌟",
+                tags: ["personal branding", "karier", "digital"],
+                isNew: true
+            },
+            {
+                id: 11,
+                title: "Workshop Menulis Karya Ilmiah",
+                category: "Pendidikan",
+                date: "2026-10-15",
+                time: "08:00 - 12:00 WIB",
+                format: "Offline",
+                location: "Ruang Seminar FBS",
+                price: "Rp35.000",
+                certificate: true,
+                organizer: "Jurnal Mahasiswa",
+                speaker: "Dr. Lina Marlina, M.Hum.",
+                description: "Workshop menulis karya ilmiah: struktur artikel, teknik parafrase, dan cara submit ke jurnal.",
+                benefit: ["Skill menulis", "Template artikel", "E-Sertifikat"],
+                thumbnail: "✍️",
+                tags: ["menulis", "karya ilmiah", "jurnal"],
+                isNew: false
+            },
+            {
+                id: 12,
+                title: "Seminar Pengembangan Karier Mahasiswa",
+                category: "Bisnis",
+                date: "2026-10-18",
+                time: "09:00 - 12:00 WIB",
+                format: "Offline",
+                location: "Career Center Hall",
+                price: "Rp20.000",
+                certificate: true,
+                organizer: "Career Center Universitas",
+                speaker: "Andi Prasetyo, S.Psi., M.M.",
+                description: "Seminar persiapan karier: CV, interview, dan soft skills yang dibutuhkan dunia kerja.",
+                benefit: ["Review CV", "Simulasi interview", "E-Sertifikat"],
+                thumbnail: "🎯",
+                tags: ["karier", "interview", "CV"],
+                isNew: true
+            }
+        ];
+
+        // ===== STATE =====
+        let currentPage = 'beranda';
+        let currentCategory = 'all';
+        let currentSearch = '';
+        let activeQuickFilters = [];
+        let favorites = JSON.parse(localStorage.getItem('seminara_favorites') || '[]');
+        let requestCount = parseInt(localStorage.getItem('seminara_requests') || '0');
+
+        // ===== NAVIGATION =====
+        function navigateTo(page) {
+            currentPage = page;
+
+            // Update pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const targetPage = document.getElementById('page-' + page);
+            if (targetPage) targetPage.classList.add('active');
+
+            // Update nav active
+            document.querySelectorAll('.nav-menu a').forEach(a => {
+                a.classList.toggle('active', a.dataset.page === page);
+            });
+            document.querySelectorAll('.bottom-nav a').forEach(a => {
+                a.classList.toggle('active', a.dataset.page === page);
+            });
+
+            // Close mobile menu
+            document.getElementById('navMenu').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('active');
+
+            // Page-specific renders
+            if (page === 'beranda') renderHome();
+            if (page === 'cari') renderCatalog();
+            if (page === 'kategori') renderCategoryFull();
+            if (page === 'favorit') renderFavorit();
+            if (page === 'profil') renderProfil();
+            if (page === 'bantuan') renderFAQ();
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('open');
+            document.getElementById('hamburger').classList.toggle('active');
+        }
+
+        // ===== RENDER HELPERS =====
+        function getCategoryClass(cat) {
+            const map = {
+                'Pendidikan': 'cat-pendidikan',
+                'IPA & Sains': 'cat-sains',
+                'Teknologi': 'cat-teknologi',
+                'Kesehatan': 'cat-kesehatan',
+                'Bisnis': 'cat-bisnis',
+                'Kreativitas': 'cat-kreativitas',
+                'Organisasi': 'cat-organisasi',
+                'Pengembangan Diri': 'cat-pengembangan'
+            };
+            return map[cat] || 'cat-pendidikan';
+        }
+
+        function getCategoryEmoji(cat) {
+            const map = {
+                'Pendidikan': '🎓',
+                'IPA & Sains': '🔬',
+                'Teknologi': '💻',
+                'Kesehatan': '🩺',
+                'Bisnis': '💼',
+                'Kreativitas': '🎨',
+                'Organisasi': '🤝',
+                'Pengembangan Diri': '🌱'
+            };
+            return map[cat] || '📚';
+        }
+
+        function isFavorite(id) {
+            return favorites.includes(id);
+        }
+
+        function toggleFavorite(id, event) {
+            if (event) event.stopPropagation();
+            if (isFavorite(id)) {
+                favorites = favorites.filter(f => f !== id);
+                showToast('Dihapus dari favorit', 'info');
+            } else {
+                favorites.push(id);
+                showToast('Ditambahkan ke favorit! 💗', 'success');
+            }
+            localStorage.setItem('seminara_favorites', JSON.stringify(favorites));
+            renderAll();
+            updateProfileStats();
+        }
+
+        function formatPrice(price) {
+            return price === 'Gratis' ? 'Gratis' : price;
+        }
+
+        function createSeminarCard(seminar) {
+            const fav = isFavorite(seminar.id);
+            const catClass = getCategoryClass(seminar.category);
+            const priceClass = seminar.price === 'Gratis' ? '' : 'paid';
+
+            return `
+                <div class="seminar-card" onclick="openDetail(${seminar.id})">
+                    <div class="card-thumb ${catClass}">
+                        <div class="card-thumb-inner">${seminar.thumbnail}</div>
+                        <span class="card-badge">${getCategoryEmoji(seminar.category)} ${seminar.category}</span>
+                        <button class="card-fav ${fav ? 'active' : ''}" onclick="toggleFavorite(${seminar.id}, event)" aria-label="Favorit">
+                            ${fav ? '❤️' : '🤍'}
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">${seminar.title}</h3>
+                        <div class="card-meta">
+                            <span>📅 ${formatDate(seminar.date)}</span>
+                            <span>⏰ ${seminar.time.split(' - ')[0]}</span>
+                            <span>${seminar.format === 'Online' ? '💻' : '📍'} ${seminar.format}</span>
+                            ${seminar.certificate ? '<span>📜 E-Sertifikat</span>' : ''}
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-price ${priceClass}">💰 ${formatPrice(seminar.price)}</span>
+                            <button class="card-btn" onclick="event.stopPropagation(); openDetail(${seminar.id})">Detail</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function formatDate(dateStr) {
+            const d = new Date(dateStr + 'T00:00:00');
+            const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+            return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+        }
+
+        function formatDateShort(dateStr) {
+            const d = new Date(dateStr + 'T00:00:00');
+            const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];
+            return `${d.getDate()} ${months[d.getMonth()]}`;
+        }
+
+        // ===== RENDER: BERANDA =====
+        function renderHome() {
+            // Carousel
+            const carousel = document.getElementById('carouselSeminar');
+            if (carousel) {
+                const featured = seminars.slice(0, 6);
+                carousel.innerHTML = featured.map(s => createSeminarCard(s)).join('');
+            }
+
+            // Category grid
+            const catGrid = document.getElementById('categoryGridHome');
+            if (catGrid) {
+                const cats = ['Pendidikan', 'IPA & Sains', 'Teknologi', 'Kesehatan', 'Bisnis', 'Kreativitas', 'Organisasi', 'Pengembangan Diri'];
+                catGrid.innerHTML = cats.map(cat => `
+                    <div class="category-card" onclick="filterByCategory('${cat}')">
+                        <span class="cat-emoji">${getCategoryEmoji(cat)}</span>
+                        <div class="cat-name">${cat}</div>
+                        <div class="cat-count">${seminars.filter(s => s.category === cat).length} seminar</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ===== RENDER: CATALOG =====
+        function getFilteredSeminars() {
+            let result = [...seminars];
+
+            // Search
+            if (currentSearch) {
+                const q = currentSearch.toLowerCase();
+                result = result.filter(s =>
+                    s.title.toLowerCase().includes(q) ||
+                    s.category.toLowerCase().includes(q) ||
+                    s.tags.some(t => t.toLowerCase().includes(q)) ||
+                    s.speaker.toLowerCase().includes(q) ||
+                    s.organizer.toLowerCase().includes(q)
+                );
+            }
+
+            // Category
+            if (currentCategory !== 'all') {
+                result = result.filter(s => s.category === currentCategory);
+            }
+
+            // Quick filters
+            if (activeQuickFilters.includes('gratis')) {
+                result = result.filter(s => s.price === 'Gratis');
+            }
+            if (activeQuickFilters.includes('sertifikat')) {
+                result = result.filter(s => s.certificate);
+            }
+            if (activeQuickFilters.includes('online')) {
+                result = result.filter(s => s.format === 'Online' || s.format === 'Hybrid');
+            }
+            if (activeQuickFilters.includes('offline')) {
+                result = result.filter(s => s.format === 'Offline' || s.format === 'Hybrid');
+            }
+            if (activeQuickFilters.includes('terbaru')) {
+                result = result.filter(s => s.isNew);
+            }
+
+            return result;
+        }
+
+        function renderCatalog() {
+            const result = getFilteredSeminars();
+            const grid = document.getElementById('catalogGrid');
+            const countEl = document.getElementById('resultCount');
+
+            if (countEl) {
+                countEl.innerHTML = `${result.length} seminar ditemukan ✨`;
+            }
+
+            if (!grid) return;
+
+            if (result.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column:1/-1;">
+                        <span class="empty-emoji">🔍</span>
+                        <h3>Seminar tidak ditemukan</h3>
+                        <p>Coba ubah kata kunci atau filter kamu ya!</p>
+                        <button class="btn btn-secondary" onclick="resetFilters()">Reset Filter</button>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = result.map(s => createSeminarCard(s)).join('');
+        }
+
+        function handleSearch() {
+            currentSearch = document.getElementById('searchInput').value.trim();
+            renderCatalog();
+            // Search animation
+            const btn = document.querySelector('.search-btn');
+            if (btn) {
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => btn.style.transform = '', 150);
+            }
+        }
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('#categoryChips .chip').forEach(c => {
+                c.classList.toggle('active', c.dataset.category === cat);
+            });
+            renderCatalog();
+        }
+
+        function toggleQuickFilter(filter) {
+            const idx = activeQuickFilters.indexOf(filter);
+            if (idx > -1) {
+                activeQuickFilters.splice(idx, 1);
+            } else {
+                activeQuickFilters.push(filter);
+            }
+            document.querySelectorAll('#quickChips .quick-chip').forEach(c => {
+                c.classList.toggle('active', activeQuickFilters.includes(c.dataset.filter));
+            });
+            renderCatalog();
+        }
+
+        function resetFilters() {
+            currentSearch = '';
+            currentCategory = 'all';
+            activeQuickFilters = [];
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) searchInput.value = '';
+            document.querySelectorAll('#categoryChips .chip').forEach(c => {
+                c.classList.toggle('active', c.dataset.category === 'all');
+            });
+            document.querySelectorAll('#quickChips .quick-chip').forEach(c => c.classList.remove('active'));
+            renderCatalog();
+        }
+
+        function filterByCategory(cat) {
+            navigateTo('cari');
+            setTimeout(() => {
+                setCategory(cat);
+            }, 100);
+        }
+
+        function quickFilter(type) {
+            navigateTo('cari');
+            setTimeout(() => {
+                resetFilters();
+                const map = {
+                    'tugas': () => setCategory('Pendidikan'),
+                    'sertifikat': () => toggleQuickFilter('sertifikat'),
+                    'gratis': () => toggleQuickFilter('gratis'),
+                    'karier': () => setCategory('Bisnis'),
+                    'publicspeaking': () => { setCategory('Pengembangan Diri'); },
+                    'digital': () => setCategory('Teknologi'),
+                    'selfdev': () => setCategory('Pengembangan Diri'),
+                    'terbaru': () => toggleQuickFilter('terbaru')
+                };
+                if (map[type]) map[type]();
+            }, 150);
+        }
+
+        // ===== RENDER: KATEGORI =====
+        function renderCategoryFull() {
+            const grid = document.getElementById('categoryGridFull');
+            if (!grid) return;
+            const cats = ['Pendidikan', 'IPA & Sains', 'Teknologi', 'Kesehatan', 'Bisnis', 'Kreativitas', 'Organisasi', 'Pengembangan Diri'];
+            grid.innerHTML = cats.map(cat => `
+                <div class="category-card" onclick="filterByCategory('${cat}')">
+                    <span class="cat-emoji">${getCategoryEmoji(cat)}</span>
+                    <div class="cat-name">${cat}</div>
+                    <div class="cat-count">${seminars.filter(s => s.category === cat).length} seminar</div>
+                </div>
+            `).join('');
+        }
+
+        // ===== RENDER: FAVORIT =====
+        function renderFavorit() {
+            const container = document.getElementById('favoritContent');
+            if (!container) return;
+
+            const favSeminars = seminars.filter(s => favorites.includes(s.id));
+
+            if (favSeminars.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <span class="empty-emoji">💗</span>
+                        <h3>Belum ada seminar favorit nih</h3>
+                        <p>Yuk cari seminar yang menarik!</p>
+                        <button class="btn btn-primary" onclick="navigateTo('cari')">🔎 Cari Seminar</button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="catalog-grid">
+                    ${favSeminars.map(s => createSeminarCard(s)).join('')}
+                </div>
+            `;
+        }
+
+        // ===== RENDER: PROFIL =====
+        function renderProfil() {
+            document.getElementById('profileFavCount').textContent = favorites.length;
+            document.getElementById('profileRequestCount').textContent = requestCount;
+
+            // Favorite category
+            if (favorites.length > 0) {
+                const favCats = {};
+                favorites.forEach(id => {
+                    const s = seminars.find(x => x.id === id);
+                    if (s) favCats[s.category] = (favCats[s.category] || 0) + 1;
+                });
+                const topCat = Object.entries(favCats).sort((a, b) => b[1] - a[1])[0];
+                document.getElementById('profileFavCategory').textContent = topCat ? topCat[0].split(' ')[0] : '-';
+            } else {
+                document.getElementById('profileFavCategory').textContent = '-';
+            }
+        }
+
+        function updateProfileStats() {
+            document.getElementById('profileFavCount').textContent = favorites.length;
+            document.getElementById('profileRequestCount').textContent = requestCount;
+        }
+
+        // ===== RENDER: FAQ =====
+        function renderFAQ() {
+            const faqs = [
+                { q: "Bagaimana cara mencari seminar?", a: "Kamu bisa klik menu 🔎 Cari Seminar, lalu gunakan search bar atau filter kategori untuk menemukan seminar yang sesuai." },
+                { q: "Bagaimana cara menyimpan favorit?", a: "Klik ikon ❤️ pada card seminar. Seminar yang kamu simpan akan muncul di halaman 💗 Favorit." },
+                { q: "Apakah seminar gratis tersedia?", a: "Ya! Banyak seminar gratis tersedia. Gunakan filter cepat ✨ Gratis untuk melihat seminar gratis." },
+                { q: "Bagaimana menggunakan Carikan Seminar?", a: "Buka menu 💌 Carikan, isi form dengan lengkap, lalu klik Kirim Request. Kami akan mencarikan seminar sesuai kebutuhanmu." },
+                { q: "Bagaimana cara menghubungi SEMINARA?", a: "Kamu bisa menghubungi kami via WhatsApp di 082337237718, Instagram @fina.rhmtkaa_, atau email finarahmatika60@gmail.com." }
+            ];
+
+            const list = document.getElementById('faqList');
+            if (!list) return;
+
+            list.innerHTML = faqs.map((f, i) => `
+                <div class="faq-item" id="faq-${i}">
+                    <div class="faq-question" onclick="toggleFAQ(${i})">
+                        <span>${f.q}</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">${f.a}</div>
+                </div>
+            `).join('');
+        }
+
+        function toggleFAQ(index) {
+            const item = document.getElementById('faq-' + index);
+            item.classList.toggle('open');
+        }
+
+        // ===== MODAL =====
+        function openDetail(id) {
+            const s = seminars.find(x => x.id === id);
+            if (!s) return;
+
+            const fav = isFavorite(s.id);
+            const catClass = getCategoryClass(s.category);
+
+            document.getElementById('modalHero').className = 'modal-hero ' + catClass;
+            document.getElementById('modalHero').innerHTML = `<span style="font-size:4rem;">${s.thumbnail}</span>`;
+
+            document.getElementById('modalBody').innerHTML = `
+                <span class="modal-category ${catClass}">${getCategoryEmoji(s.category)} ${s.category}</span>
+                <h2 class="modal-title">${s.title}</h2>
+                <p class="modal-desc">${s.description}</p>
+
+                <div class="modal-info-grid">
+                    <div class="modal-info-item">
+                        <span class="info-emoji">📅</span>
+                        <div><strong>Tanggal</strong>${formatDate(s.date)}</div>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="info-emoji">⏰</span>
+                        <div><strong>Waktu</strong>${s.time}</div>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="info-emoji">💻</span>
+                        <div><strong>Format</strong>${s.format}</div>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="info-emoji">📍</span>
+                        <div><strong>Lokasi</strong>${s.location}</div>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="info-emoji">🎤</span>
+                        <div><strong>Speaker</strong>${s.speaker}</div>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="info-emoji">🏢</span>
+                        <div><strong>Organizer</strong>${s.organizer}</div>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="info-emoji">💰</span>
+                        <div><strong>Harga</strong>${formatPrice(s.price)}</div>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="info-emoji">📜</span>
+                        <div><strong>Sertifikat</strong>${s.certificate ? 'E-Sertifikat ✅' : 'Tidak tersedia'}</div>
+                    </div>
+                </div>
+
+                <div class="modal-benefits">
+                    <h4>✨ Benefit</h4>
+                    <ul>
+                        ${s.benefit.map(b => `<li>✅ ${b}</li>`).join('')}
+                    </ul>
+                </div>
+
+                <div style="margin-bottom:16px;">
+                    ${s.tags.map(t => `<span class="tag">#${t}</span>`).join('')}
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="toggleFavorite(${s.id}, event); openDetail(${s.id});">
+                        ${fav ? '❤️ Tersimpan' : '🤍 Simpan Favorit'}
+                    </button>
+                    <button class="btn btn-primary" onclick="daftarSeminar(${s.id})">
+                        🎟️ Daftar Sekarang
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeModalOutside(event) {
+            if (event.target === document.getElementById('modalOverlay')) {
+                closeModal();
+            }
+        }
+
+        function daftarSeminar(id) {
+            const s = seminars.find(x => x.id === id);
+            if (!s) return;
+            showToast(`Pendaftaran berhasil! 💗 Kamu terdaftar di "${s.title}"`, 'success');
+            closeModal();
+        }
+
+        // ===== TOAST =====
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast ' + (type === 'error' ? 'error' : type === 'info' ? 'info' : '');
+            toast.innerHTML = `${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'} ${message}`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('removing');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // ===== FORM REQUEST =====
+        function submitRequest(e) {
+            e.preventDefault();
+
+            // Reset errors
+            document.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+
+            // Validate
+            let valid = true;
+            const fields = [
+                { id: 'reqNama', required: true },
+                { id: 'reqWA', required: true },
+                { id: 'reqJurusan', required: true },
+                { id: 'reqTopik', required: true },
+                { id: 'reqKategori', required: true },
+                { id: 'reqBudget', required: true },
+                { id: 'reqTanggal', required: true },
+                { id: 'reqFormat', required: true },
+                { id: 'reqSertifikat', required: true },
+                { id: 'reqPaket', required: true }
+            ];
+
+            fields.forEach(f => {
+                const el = document.getElementById(f.id);
+                if (f.required && !el.value.trim()) {
+                    el.closest('.form-group').classList.add('error');
+                    valid = false;
+                }
+            });
+
+            if (!valid) {
+                showToast('Mohon lengkapi semua field ya!', 'error');
+                return;
+            }
+
+            // Get values
+            const nama = document.getElementById('reqNama').value;
+            const wa = document.getElementById('reqWA').value;
+            const jurusan = document.getElementById('reqJurusan').value;
+            const topik = document.getElementById('reqTopik').value;
+            const kategori = document.getElementById('reqKategori').value;
+            const budget = document.getElementById('reqBudget').value;
+            const tanggal = document.getElementById('reqTanggal').value;
+            const format = document.getElementById('reqFormat').value;
+            const sertifikat = document.getElementById('reqSertifikat').value;
+            const paket = document.getElementById('reqPaket').value;
+
+            // Build WhatsApp message
+            const msg = `Halo SEMINARA! 👋%0A%0ASaya ingin request carikan seminar:%0A%0A👤 Nama: ${nama}%0A📱 WhatsApp: ${wa}%0A🎓 Jurusan: ${jurusan}%0A🔎 Topik: ${topik}%0A📚 Kategori: ${kategori}%0A💰 Budget: ${budget}%0A📅 Tanggal: ${tanggal}%0A💻 Format: ${format}%0A📜 Sertifikat: ${sertifikat}%0A🎟️ Paket: ${paket}%0A%0ATerima kasih! 💗`;
+
+            const waLink = `https://wa.me/6282337237718?text=${msg}`;
+
+            // Update UI
+            document.getElementById('requestStatus').classList.remove('hidden');
+            document.getElementById('waButtonContainer').style.display = 'block';
+            document.getElementById('waLink').href = waLink;
+
+            requestCount++;
+            localStorage.setItem('seminara_requests', requestCount.toString());
+            updateProfileStats();
+
+            showToast('Request kamu berhasil dikirim! 💗', 'success');
+        }
+
+        // ===== PACKAGE SELECTION =====
+        function selectPackage(paket) {
+            navigateTo('carikan');
+            setTimeout(() => {
+                const select = document.getElementById('reqPaket');
+                if (select) {
+                    select.value = paket;
+                    showToast(`Paket "${paket}" dipilih! ✅`, 'success');
+                }
+            }, 200);
+        }
+
+        // ===== RENDER ALL =====
+        function renderAll() {
+            renderHome();
+            if (currentPage === 'cari') renderCatalog();
+            if (currentPage === 'favorit') renderFavorit();
+            if (currentPage === 'profil') renderProfil();
+        }
+
+        // ===== SCROLL EFFECT =====
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ===== INIT =====
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHome();
+            renderCatalog();
+            renderCategoryFull();
+            renderFavorit();
+            renderProfil();
+            renderFAQ();
+            updateProfileStats();
+
+            // Set default date to today
+            const dateInput = document.getElementById('reqTanggal');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+            }
+        });
+
+        // Close modal with Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
